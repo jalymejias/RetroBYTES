@@ -1,0 +1,47 @@
+li {
+  font-size: 1.5rem;
+  font-family: "KatahdinRound-Bold";
+  text-transform: uppercase;
+  padding: 10px;
+  opacity: 0.5;
+}
+
+ul li a,
+ul li span {
+  display: block;
+  color: rgb(15, 15, 15);
+}
+
+ul li span {
+  height: 30px;
+  width: 30px;
+  margin: auto;
+  padding-bottom: 2rem;
+}
+
+ul li {
+  float: left;
+}
+
+ul li a {
+  text-decoration: none;
+  padding: 0 15px;
+}
+
+ul li a:hover {
+  background-color: rgb(206, 206, 206);
+}
+
+ul li.top_link {
+  background-position: 0 -370px;
+  opacity: 1 !important;
+}
+ul li.top_link:hover {
+  background-position: 0 -170px;
+  background-color: rgb(206, 206, 206);
+}
+
+ul li.top_link:visited {
+  text-decoration: none;
+  text-decoration-color: none;
+}
