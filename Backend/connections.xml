@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<data grt_format="2.0">
+  <value _ptr_="0x56043bfb6590" type="list" content-type="object" content-struct-name="db.mgmt.Connection">
+    <value type="object" struct-name="db.mgmt.Connection" id="ee4fef4c-e491-11eb-abf5-a7be93038e26" struct-checksum="0x96ba47d8">
+      <link type="object" struct-name="db.mgmt.Driver" key="driver">com.mysql.rdbms.mysql.driver.native</link>
+      <value type="string" key="hostIdentifier">Mysql@localhost:3306</value>
+      <value type="int" key="isDefault">0</value>
+      <value _ptr_="0x56043c4716a0" type="dict" key="modules"/>
+      <value _ptr_="0x56043c471720" type="dict" key="parameterValues">
+        <value type="string" key="SQL_MODE"></value>
+        <value type="string" key="hostName">localhost</value>
+        <value type="int" key="lastConnected">1631556535</value>
+        <value type="string" key="password"></value>
+        <value type="int" key="port">3306</value>
+        <value type="string" key="schema"></value>
+        <value type="string" key="serverVersion">8.0.26-0ubuntu0.20.04.2</value>
+        <value type="string" key="sslCA"></value>
+        <value type="string" key="sslCert"></value>
+        <value type="string" key="sslCipher"></value>
+        <value type="string" key="sslKey"></value>
+        <value type="int" key="useSSL">1</value>
+        <value type="string" key="userName">root</value>
+      </value>
+      <value type="string" key="name">Local instance 3306</value>
+      <link type="object" struct-name="GrtObject" key="owner">c5b3223c-22b5-11ec-b052-515472c636e3</link>
+    </value>
+    <value type="object" struct-name="db.mgmt.Connection" id="dbf5d219-e494-11eb-abf5-a7be93038e26" struct-checksum="0x96ba47d8">
+      <link type="object" struct-name="db.mgmt.Driver" key="driver">com.mysql.rdbms.mysql.driver.native</link>
+      <value type="string" key="hostIdentifier">Mysql@127.0.0.1:3306</value>
+      <value type="int" key="isDefault">1</value>
+      <value _ptr_="0x56043c586600" type="dict" key="modules"/>
+      <value _ptr_="0x56043c586680" type="dict" key="parameterValues">
+        <value type="string" key="DbSqlEditor:LastDefaultSchema">sys</value>
+        <value type="string" key="SQL_MODE"></value>
+        <value type="string" key="hostName">127.0.0.1</value>
+        <value type="int" key="lastConnected">1633092471</value>
+        <value type="string" key="password"></value>
+        <value type="int" key="port">3306</value>
+        <value type="string" key="schema"></value>
+        <value type="string" key="serverVersion">8.0.26-0ubuntu0.20.04.2</value>
+        <value type="string" key="sslCA"></value>
+        <value type="string" key="sslCert"></value>
+        <value type="string" key="sslCipher"></value>
+        <value type="string" key="sslKey"></value>
+        <value type="int" key="useSSL">1</value>
+        <value type="string" key="userName">demo</value>
+      </value>
+      <value type="string" key="name">Example</value>
+      <link type="object" struct-name="GrtObject" key="owner">c5b3223c-22b5-11ec-b052-515472c636e3</link>
+    </value>
+  </value>
+</data>
