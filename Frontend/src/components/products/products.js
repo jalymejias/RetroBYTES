@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom"
 import { Grid, Paper, Typography } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -75,6 +76,7 @@ function ListProducts(props) {
         >
           {products.length > 0 &&
             products.slice(0, 9).map((product) => (
+              <Link to={`/product/${product.id}`}>
               <Grid item xs={12} sm={4} md={4} key={product.name}>
                 <Paper elevation={8}>
                 <Card>
@@ -123,7 +125,7 @@ function ListProducts(props) {
                 </Card>
                 </Paper>
               </Grid>
-              
+              </Link>
             ))}
         </Grid>
 

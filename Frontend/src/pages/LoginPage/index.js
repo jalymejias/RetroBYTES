@@ -30,7 +30,7 @@ const Login = () => {
   // creamos variables para cada input
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [setToken] = useUserTokenContext();
+  const [,setToken] = useUserTokenContext();
 
   const handleLogin = async (e) => {
     e.preventDefault();

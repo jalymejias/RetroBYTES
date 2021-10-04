@@ -24,7 +24,7 @@ const avatarStyle = { backgroundColor: "#f4a261" };
 const Register = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+console.log({email, password})
   const handleRegister = async (e) => {
     e.preventDefault();
     const requestBody = {
@@ -32,7 +32,8 @@ const Register = (props) => {
       password,
     };
 
-    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
+    console.log("hola",requestBody)
+    const res = await fetch(`http://localhost:3001/users`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
