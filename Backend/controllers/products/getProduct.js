@@ -9,7 +9,7 @@ const getProduct = async (req, res, next) => {
 
     const [result] = await connection.query(
       `
-      SELECT products.id, products.name, products.category, MAX(products_photos.photo) foto, products.place, products.price, products.manufact_date, user_id, AVG(IFNULL(user_ranking.vote,0)) AS votes
+      SELECT products.id, products.name, products.category, MAX(products_photos.photo) foto, products.place, products.price, products.manufact_date, products.description,user_id, AVG(IFNULL(user_ranking.vote,0)) AS votes
       FROM products
       LEFT JOIN user_ranking ON (user_ranking.userSeller_id = products.user_id)
       LEFT JOIN products_photos ON (products.id = products_photos.product_id)

@@ -12,7 +12,7 @@ const editUser = async (req, res, next) => {
 
     // saco name, email desde el body
     const { name, email } = req.body;
-
+console.log(req.body)
     // comprobar que el usuario que quiero modificar es lo que hace login
     if (req.userAuth.id !== Number(id)) {
       const error = new Error("No puedes editar los datos de otro usuario");

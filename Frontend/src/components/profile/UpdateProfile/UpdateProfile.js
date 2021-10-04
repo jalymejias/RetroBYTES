@@ -1,5 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styled from "styled-components";
+import { toast } from "react-toastify";
+import {useUserTokenContext} from "../../../contexts/UserTokenContext"
+import decodeTokenData from "../../../helpers/decodeTokenData"
+import useUserProfile from "../../../hooks/useUserProfile"
+import EditableAvatar from "../../editarAvatar"
 
 
 const Center = styled.div`
@@ -124,100 +129,84 @@ button[type="submit"]:hover {
 export const UpdateProfile = (props) => {
 
   const [name, setName] = useState("");
-    const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [repeatPassword, setRepeatPassword] = useState("");
+    const [done, setDone] = useState(false);
+    const [token]=useUserTokenContext() 
+    const decodedTokenData = decodeTokenData(token)
+    const [userProfile]= useUserProfile(token)
+    const imageInputRef= useRef(null)   
+    
+    console.log({name,email, userProfile})
     const handleUpdate = async (e) => {
     e.preventDefault();
-    const requestBody = {
-        name,
-        userName,
-        email,
-        password,
-        repeatPassword,
-      };
-      const res = await fetch("", {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        });
+    const userToEdit = new FormData()
+    const newAvatar = imageInputRef.current.files[0]
+    userToEdit.append("email",email || userProfile.email)
+    userToEdit.append("name",name || userProfile.name)
+
+    if (newAvatar){
+      userToEdit.append("avatar", newAvatar)
+    }
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${decodedTokenData.id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: token 
+      },
+      body: userToEdit,
+    });
+
+    if (res.ok) {
+      setDone(true);
+    } else {
+      const error = await res.json();
+      toast.error(error.message);
+    }
+    
     };
   return (
     <>
+    {!done ?
       <Center>
+
           <h1>Modifica tus datos y preferencias</h1>
           <form onSubmit={handleUpdate}>
-            <div class="txt_field">
+            <EditableAvatar avatar={userProfile.avatar} name={userProfile.name} imageInputRef={imageInputRef}/>
+            <div className="txt_field">
               <input
                 id="user-fullname"
                 name="user-fullname"
-                required="required"
+                
                 type="text"
                 value={name}
+                placeholder={userProfile.name}
                 onChange={(e) => setName(e.target.value)}
                 />
                 <span></span>
                 <label>Nuevo Nombre</label>
             </div>
-              <div class="txt_field">
-              <input
-                id="username"
-                name="username"
-                required="required"
-                type="text"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                />
-                <span></span>
-                <label>Nuevo Nombre de usuario</label>
-              </div>
-              <div class="txt_field">
+              <div className="txt_field">
               <input
                 id="email"
                 name="email"
-                required="required"
+                
                 type="email"
                 value={email}
+                placeholder={userProfile.email}
                 onChange={(e) => setEmail(e.target.value)}
                 />
                 <span></span>
                 <label>Nuevo Correo electrónico</label>
               </div>
-              <div class="txt_field">
-              <input
-                id="password"
-                name="password"
-                required="required"
-                type="password"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                />
-                <span></span>
-                <label>Nueva Contraseña</label>
-              </div>
-              <div class="txt_field">
-              <input
-                id="confirm-password"
-                name="confirm-password"
-                required="required"
-                type="password"
-                value={repeatPassword}
-                onChange={(e) => setRepeatPassword(e.target.value)}
-              />
-              <span></span>
-              <label htmlFor="user-confirm-password">
-                Confirma tu Nueva contraseña
-              </label>
-              </div>
+              
             <button type="submit" value="Registro">
               ACTUALIZAR
             </button>
           </form>
          </Center>
+         : (        
+          alert("Haz actualizado los datos correctamente. Revisa tu correo para validar tu cuenta")
+            )
+        }
     </>
   );
 };

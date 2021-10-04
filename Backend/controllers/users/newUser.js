@@ -49,12 +49,12 @@ const newUser = async (req, res, next) => {
     Pulsa aqui para validar tu usuario: ${process.env.PUBLIC_HOST}/users/validate/${registrationCode},
     `;
 
-    // sendMail({
-    //   to: email,
-    //   from: "info@retrobytes.com",
-    //   subject: "Activa tu usuario de RetroBytes",
-    //   body: emailBody,
-    // });
+    sendMail({
+      to: email,
+      from: "info@retrobytes.com",
+      subject: "Activa tu usuario de RetroBytes",
+      body: emailBody,
+    });
 
     // mando una respuesta
     res.send({

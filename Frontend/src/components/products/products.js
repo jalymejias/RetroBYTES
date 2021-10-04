@@ -6,12 +6,20 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-//  import products from "./dummy-products/dummy_products";
 import useProducts from "../../hooks/useProducts";
-// import { createTheme } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import { withStyles } from "@material-ui/core";
 import theme from '../../theme'
+import styled from "styled-components";
+
+
+const ProductsContainer = styled.div`
+padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`
+
 
 const styles = {
     root: {
@@ -68,16 +76,14 @@ function ListProducts(props) {
     <ThemeProvider theme={theme}>
       <div style={{ marginTop: 0, padding: 55 }}>
         <h1>Productos</h1>
-        <Grid
-          container
+        <Grid container
           spacing="2"
           columns={{ xs: 1, sm: 4, md: 8 }}
-          justify="center"
-        >
+          justify="center">
           {products.length > 0 &&
             products.slice(0, 9).map((product) => (
-              <Link to={`/product/${product.id}`}>
-              <Grid item xs={12} sm={4} md={4} key={product.name}>
+              <Link to={`/product/${product.id}`} key={product.name}>
+              <Grid item xs={12} sm={4} md={4}>
                 <Paper elevation={8}>
                 <Card>
                   <CardActionArea style={{

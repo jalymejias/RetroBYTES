@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const faker = require("faker");
 const getDB = require("./db");
 const { formatDateToDB } = require("./helpers");
@@ -6,6 +7,10 @@ const { random } = require("lodash");
 const fs = require("fs");
 const axios = require("axios");
 const uuid = require("uuid");
+
+
+
+
 
 async function downloadImage(url, filepath) {
   const queryResponse = await axios({
@@ -147,7 +152,7 @@ async function main() {
       const avatar = `${uuid.v4()}.jpg`;
 
       const randomAvatarUrl = "https://source.unsplash.com/1600x900/?people";
-      const avatarPath = `./static/uploads/${avatar}`;
+      const avatarPath = `./uploads/${avatar}`;
       await downloadImage(randomAvatarUrl, avatarPath);
 
       await connection.query(`
