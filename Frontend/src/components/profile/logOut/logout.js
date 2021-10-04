@@ -1,6 +1,6 @@
-//import { useContext } from "react";
-//import { TokenContext } from "./TokenContext";
-//import { Redirect } from "react-router-dom";
+import { useContext } from "react";
+import { UserTokenContext } from "../../../contexts/UserTokenContext";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -54,23 +54,28 @@ input[type="submit"]:hover {
 
 
 export const Logout = (props) => {
-//  const [token, setToken] = useContext(TokenContext);
+  const [token, setToken] = useContext(UserTokenContext);
   const handleLogout = (e) => {
     e.preventDefault();
-  //  setToken("");
+    setToken("");
   };
   return (
     <>
+    {token ? 
       <Center>
         <h1>¿Desea Cerrar su Sesion?</h1>
-          <form onSubmit={handleLogout}>
-            <input
-              type="submit"
-              value="Logout"
-              className="button-all-page"
-            ></input>
-          </form>
+        <form onSubmit={handleLogout}>
+          <input
+            type="submit"
+            value="Logout"
+            className="button-all-page"
+          />
+        </form>
       </Center>
+      : 
+      <Redirect to="/"/>
+    }
+      
       
     </>
   );

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useUserTokenContext } from "../../contexts/UserTokenContext";
+import { useState, useContext } from "react";
+import { UserTokenContext } from "../../contexts/UserTokenContext";
 import {
   Grid,
   Box,
@@ -13,6 +13,7 @@ import {
 // import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import LoginIcon from '@mui/icons-material/Login';
 import VideoBkg from "../../components/plus/videobg";
+import { Redirect } from "react-router";
 // import Checkbox from "@material-ui/core/Checkbox";
 
 
@@ -30,7 +31,7 @@ const Login = () => {
   // creamos variables para cada input
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [,setToken] = useUserTokenContext();
+  const [token,setToken] = useContext(UserTokenContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -54,93 +55,102 @@ const Login = () => {
     if (res.ok) {
       const body = await res.json();
       setToken(body.data.token);
-      alert("Logueado correactamente");
     } else {
-      alert("Hubo un error");
+      alert("Usuario o Contraseña Incorrecto");
     }
   };
 
   return (
-    <Box
-    display="flex"
-    justifyContent="center"
-    alignItems="center"
-    minHeight="20vh"
-      component="form"
-      sx={{
-        "& > :not(style)": { m: 3, width: "55ch" },
-        
-      }}
-    >
-      <Grid container >
-        <Paper elevation={10} style={paperStyle}>
-          <Grid item align="center">
-            <Avatar style={avatarStyle} margin-top="10px" size={"2rem"}>
-              <LoginIcon />
-            </Avatar>
-            <Box style={{ marginTop: "20px" }}>
-              <Typography style={{ fontSize: "2rem", fontWeight: 600, textTransform:'uppercase' }}>
-                Ingresar
-              </Typography>
-            </Box>
-          </Grid>
-          <form onSubmit={handleLogin}>
-            <TextField
-              style={{ marginTop: "20px" }}
-              label="Email"
-              placeholder="Introduce tu e-mail"
-              fullWidth
-              required
-              inputProps={{ style: { fontSize: 30 } }}
-              inputLabelProps={{ style: { fontSize: 30 } }}
-              InputLabel={{ style: { fontSize: 90 } }}
-              variant="outlined"
-              onChange={(e) => setEmail(e.target.value)}
-            />
+    <>
+      {token ? 
+      <>
+        <Redirect to="/" />
+      </> : 
+      <>
+<Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="20vh"
+          component="form"
+          sx={{
+            "& > :not(style)": { m: 3, width: "55ch" },
+            
+          }}
+        >
+          <Grid container >
+            <Paper elevation={10} style={paperStyle}>
+              <Grid item align="center">
+                <Avatar style={avatarStyle} margin-top="10px" size={"2rem"}>
+                  <LoginIcon />
+                </Avatar>
+                <Box style={{ marginTop: "20px" }}>
+                  <Typography style={{ fontSize: "2rem", fontWeight: 600, textTransform:'uppercase' }}>
+                    Ingresar
+                  </Typography>
+                </Box>
+              </Grid>
+              <form onSubmit={handleLogin}>
+                <TextField
+                  style={{ marginTop: "20px" }}
+                  label="Email"
+                  placeholder="Introduce tu e-mail"
+                  fullWidth
+                  required
+                  inputProps={{ style: { fontSize: 30 } }}
+                  inputLabelProps={{ style: { fontSize: 30 } }}
+                  InputLabel={{ style: { fontSize: 90 } }}
+                  variant="outlined"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
 
-            <TextField
-              style={{ marginTop: "20px" }}
-              label="Contraseña"
-              placeholder="Ingresa tu contraseña"
-              type="password"
-              fullWidth
-              required
-              inputProps={{ style: { fontSize: 30 } }}
-              inputLabelProps={{ style: { fontSize: 30 } }}
-              InputLabel={{ style: { fontSize: 90 } }}
-              variant="outlined"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {/* <FormControlLabel
-          control={<Checkbox name="checkedB" color="primary" />}
-          label="Remember me"
-        /> */}
-            <Button
-              type="submit"
-              onClick={handleLogin}
-              size="large"
-              color="primary"
-              variant="contained"
-              //   style={btnstyle}
-              fullWidth
-              style={{ marginTop: "20px", fontSize: "2rem" }}
-            >
-              Entrar
-            </Button>
-          </form>
-            <Typography style={{ marginTop: "20px", fontSize: "1.5rem" }}>
-              <Link href="#">Olvidaste tu contraseña?</Link>
-            </Typography>
-            <Typography style={{ marginTop: "20px", fontSize: "2rem" }}>
-              {" "}
-              ¿Aún no tienes una cuenta?
-              <Link href="/register"> Regístrate</Link>
-            </Typography>
-        </Paper>
+                <TextField
+                  style={{ marginTop: "20px" }}
+                  label="Contraseña"
+                  placeholder="Ingresa tu contraseña"
+                  type="password"
+                  fullWidth
+                  required
+                  inputProps={{ style: { fontSize: 30 } }}
+                  inputLabelProps={{ style: { fontSize: 30 } }}
+                  InputLabel={{ style: { fontSize: 90 } }}
+                  variant="outlined"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {/* <FormControlLabel
+              control={<Checkbox name="checkedB" color="primary" />}
+              label="Remember me"
+            /> */}
+                <Button
+                  type="submit"
+                  onClick={handleLogin}
+                  size="large"
+                  color="primary"
+                  variant="contained"
+                  //   style={btnstyle}
+                  fullWidth
+                  style={{ marginTop: "20px", fontSize: "2rem" }}
+                >
+                  Entrar
+                </Button>
+              </form>
+                <Typography style={{ marginTop: "20px", fontSize: "1.5rem" }}>
+                  <Link href="#">Olvidaste tu contraseña?</Link>
+                </Typography>
+                <Typography style={{ marginTop: "20px", fontSize: "2rem" }}>
+                  {" "}
+                  ¿Aún no tienes una cuenta?
+                  <Link href="/register"> Regístrate</Link>
+                </Typography>
+            </Paper>
+        
+          <VideoBkg />
+          </Grid>
+        </Box>
+      </>
+      };
     
-      <VideoBkg />
-      </Grid>
-    </Box>
+    </>
   );
 };
 

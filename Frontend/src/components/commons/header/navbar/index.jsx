@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
-// import {Logo} from "./../logo";
 import { Accessibility } from "./accessibility";
 import { DeviceSize } from "../../responsive";
 import { NavLinks } from "./navLinks";
 import { MobileNavLinks } from "./mobileNavLinks";
 import {SearchBar} from "../search/searchBar";
 import "normalize.css/normalize.css";
+import { UserTokenContext } from "../../../../contexts/UserTokenContext";
+import { useContext } from "react";
 
 const NavBarContainer = styled.div`
 //   width: 100vw;
@@ -43,6 +44,7 @@ const RightSection = styled.div `
 
 export function Navbar(props) {
     const isMobile = useMediaQuery({ maxWidth: DeviceSize.mobile });
+    const [token] = useContext(UserTokenContext);
 
     return <NavBarContainer>
         <LeftSection>
@@ -53,10 +55,18 @@ export function Navbar(props) {
         {!isMobile && <NavLinks />}
         {isMobile && <SearchBar />}
         </MiddleSection>
-        <RightSection>
-        {!isMobile && <Accessibility />}
-        {isMobile && <MobileNavLinks />}
-      </RightSection>
+ 
+        {token ?
+            <>
+            </>                       
+        :
+            <RightSection>
+            {!isMobile && <Accessibility />}
+            {isMobile && <MobileNavLinks />}
+            </RightSection>
+        }
+ 
+ 
     </NavBarContainer>
 
 }

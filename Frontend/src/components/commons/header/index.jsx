@@ -11,7 +11,7 @@ import { MenuTop } from "./top";
 
 const Container = styled.div`
   width: 98vw;
-  height: 180px;
+  height: 80px;
   box-shadow: 0 1px 3px rgba(15, 15, 15, 0.13);
   display: flex;
   align-items: center;
