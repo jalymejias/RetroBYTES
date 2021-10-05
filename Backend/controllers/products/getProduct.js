@@ -27,7 +27,6 @@ const getProduct = async (req, res, next) => {
       throw error;
     }
 
-
     res.send({
       status: "ok",
       data: result[0],

@@ -44,7 +44,7 @@ class ProfileTabs extends React.PureComponent {
             }}
           >
             <VerticalTabs value={activeIndex} onChange={this.handleChange}>
-              <MyTab label="Mis Productos" />
+              <MyTab label="Reservas recibidas" />
               <MyTab label="Reservas realizadas" />
               <MyTab label="Configuración" />
               <MyTab label="Cerrar Sesion" />
@@ -121,9 +121,9 @@ function TabContainer(props) {
       minHeight="45vh"
       minWidth="60vh"
       backgroundColor="lightgray"
-      sx={{
-        "& > :not(style)": { m: 3, width: "80ch" },
-      }}
+      // sx={{
+      //   "& > :not(style)": { m: 3, width: "80ch" },
+      // }}
     >
       <Typography component="div" style={{ font: "2rem", padding: 24 }}>
         {props.children}

@@ -10,6 +10,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import { withStyles } from "@material-ui/core";
 import theme from "../../theme";
 import styled from "styled-components";
+import { Rating } from "@mui/material";
 
 const styles = {
   root: {
@@ -91,6 +92,10 @@ function ListProducts({ products }) {
                           title={`${product.name}`}
                         />
                         <CardContent>
+                          <Typography gutterBottom variant="h4" component="h1">
+                            <Rating value={+product.votes} readOnly />
+                          </Typography>
+
                           <Typography gutterBottom variant="h4" component="h1">
                             {product.name}
                           </Typography>

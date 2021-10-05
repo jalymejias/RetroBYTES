@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
+import formatDate from "../../helpers/formatDate";
 
 const ReservaRealizada = ({ reserva }) => {
-  console.log("realizada", reserva);
   return (
     <div className="reserva_realizada">
       <Link to={`/product/${reserva.product_id}`}>
@@ -13,7 +13,13 @@ const ReservaRealizada = ({ reserva }) => {
       </Link>
       <p>{reserva.name}</p>
       {reserva.status === null && <p>Status: Pendiente</p>}
-      {reserva.status === 1 && <p>Status: Aprobada</p>}
+      {reserva.status === 1 && (
+        <>
+          <p>Status: Aprobada</p>
+          <p>Lugar de entrega: {reserva.placeDelivery}</p>
+          <p>Fecha de entrega: {formatDate(reserva.timeDelivery)}</p>
+        </>
+      )}
       {reserva.status === 0 && <p>Status: Rechazada</p>}
     </div>
   );

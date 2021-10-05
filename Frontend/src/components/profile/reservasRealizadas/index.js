@@ -22,12 +22,15 @@ function ReservasRealizadas() {
       </Typography>
       <Box
         display="flex"
+        flexDirection="column"
         justifyContent="center"
         alignItems="center"
         minHeight="50vh"
+        maxHeight="70vh"
         minWidth="60vh"
         sx={{
           "& > :not(style)": { m: 3, width: "80ch" },
+          "&": { overflowY: "auto" },
         }}
       >
         {reservas.length &&

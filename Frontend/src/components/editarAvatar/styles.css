@@ -1,0 +1,12 @@
+.editable_avatar,
+.avatar {
+  width: 100px;
+  height: 100px;
+}
+
+.editable_avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}

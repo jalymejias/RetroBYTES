@@ -1,3 +1,4 @@
+import "./styles.css";
 import Avatar from "../avatar";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -5,9 +6,11 @@ import { useEffect } from "react";
 const EditableAvatar = ({ avatar, name, imageInputRef }) => {
   const [newAvatar, setNewAvatar] = useState(avatar);
   const [didUserUpdateAvatar, setDidUserUpdateAvatar] = useState(false);
-  useEffect(()=>{
-    setNewAvatar(avatar)
-  }, [avatar])
+
+  useEffect(() => {
+    setNewAvatar(avatar);
+  }, [avatar]);
+
   return (
     <div className="editable_avatar">
       <label htmlFor="avatar">
