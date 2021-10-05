@@ -20,9 +20,9 @@ function Home() {
           <ListProducts/>
           <Footer />
         </>
-      };
+      }
     </>
-  );
+  )
 }
 
 export default Home;

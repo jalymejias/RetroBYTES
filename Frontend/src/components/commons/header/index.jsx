@@ -10,7 +10,7 @@ import { MenuTop } from "./top";
 
 
 const Container = styled.div`
-  width: 98vw;
+//   width: 100vw;
   height: 80px;
   box-shadow: 0 1px 3px rgba(15, 15, 15, 0.13);
   display: flex;

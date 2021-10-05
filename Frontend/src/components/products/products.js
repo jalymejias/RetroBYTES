@@ -1,3 +1,4 @@
+  
 import {Link} from "react-router-dom"
 import { Grid, Paper, Typography } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
@@ -12,13 +13,6 @@ import { withStyles } from "@material-ui/core";
 import theme from '../../theme'
 import styled from "styled-components";
 
-
-const ProductsContainer = styled.div`
-padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`
 
 
 const styles = {
@@ -82,8 +76,10 @@ function ListProducts(props) {
           justify="center">
           {products.length > 0 &&
             products.slice(0, 9).map((product) => (
-              <Link to={`/product/${product.id}`} key={product.name}>
               <Grid item xs={12} sm={4} md={4}>
+                <Link to={`/product/${product.id}`} key={product.name}
+                style={{textDecoration: 'none'}}
+                >
                 <Paper elevation={8}>
                 <Card>
                   <CardActionArea style={{
@@ -124,14 +120,16 @@ function ListProducts(props) {
                     <Button variant="contained" size="large" color="secondary">
                       Más Info
                     </Button>
+                    <Link to={`/product/${product.id}`} key={product.name} style={{textDecoration: 'none'}}>
                     <Button variant="contained" size="large" color="primary">
                       Comprar
                     </Button>
+                    </Link>
                   </CardActions>
                 </Card>
                 </Paper>
-              </Grid>
               </Link>
+              </Grid>
             ))}
         </Grid>
 

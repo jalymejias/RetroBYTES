@@ -1,5 +1,6 @@
 .product_page {
   flex-direction: column;
+  
 }
 
 .product_page .go_back {
@@ -14,6 +15,7 @@
   height: 900px;
   border: 1px solid rgb(195, 195, 195);
   border-radius: 5px;
+  
 }
 
 .product_page .entry_user_info {

@@ -2,45 +2,59 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import useProduct from '../../hooks/useProduct';
 import styled from "styled-components";
+import background from "../../assets/images/backIcons.jpg";
 
+// const Back = styled.div`
+//     backgroundImage: "url(${background})";
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     height: 50vh;
+//     width: 100vw;
+// `
 
 const Center = styled.div`
-position: absolute;
-top: 60%;
-left: 50%;
-padding: 30px;
-transform: translate(-50%, -50%);
-width: 600px;
-height: 700px;
+display: table;
+margin: auto;
+margin-top: 10px;
+margin-bottom: 10px;
+width: 45vw;
 background: white;
 border-radius: 10px;
-box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
-display: flex;
+box-shadow: 0 0 10px #ccc;
 flex-direction: column;
 
-img{
-  height: 400px;
 
+img{
+  height: 30vw;
+  border-radius:5%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 .box{
-  padding: 0 40px;
+  padding: 0 50px;
   box-sizing: border-box;
 }
 
 h1, h2, h3, h4 {
   text-align: left;
-  padding: 20px 0;
+  padding: 15px 0;
   border-bottom: 1px solid silver;
 }
 
 button {
-  width: 100%;
+  width: 60vw;
+  display: block;
+  margin: 0 auto;
   height: 50px;
-  margin: 0 0 10px 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
   border: 1px solid;
   background: #2691d9;
   border-radius: 25px;
   font-size: 18px;
+  text-align: center;
   color: #e9f4fb;
   font-weight: 700;
   cursor: pointer;
@@ -59,6 +73,10 @@ const Product = () => {
   const [product]= useProduct(id)
   console.log({id,product})
   return(
+    <div style={{backgroundImage: `url(${background})`,
+                  width:'100vw',
+                  height: '100vh'}}>
+
     <Center>
       {
         <div key={product._id}>
@@ -66,15 +84,17 @@ const Product = () => {
             <div className="box">
             
                 <h1>{product.name}</h1>
-                <h2>Precio: ${product.price}</h2>
-                <h2>Año de Fabricación: {product.manufact_date}</h2>
-                <h4>Descripcion: {product.description}</h4>
+                <h2>Precio: €{product.price}</h2>
+                <h2>Año de fabricación: {product.manufact_date}</h2>
+                <h4>{product.description}</h4>
               <button className="cart">RESERVA</button>
 
             </div>
         </div>
       }
     </Center>
+      
+      </div>
   );
 };
 
