@@ -8,6 +8,7 @@ const reservedProduct = async (req, res, next) => {
     // Sacamos los campos necesarios:
 
     const { placeDelivery, timeDelivery } = req.body;
+    console.log(req.body);
     const { id: product_id, idSale } = req.params;
 
     // seleccionar el id de la compra

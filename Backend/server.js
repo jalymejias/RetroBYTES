@@ -166,7 +166,7 @@ app.post("/users/resetpassword", resetUserPassword);
 app.post("/buy/:id/proposal", productExists, isUser, saleRequest);
 
 // reserva de producto y enviar datos de entrega
-app.put("/reserve/:idSale", isUser, reservedProduct);
+app.put("/reserve/:id/:idSale", isUser, reservedProduct);
 
 // rechazar propuesta de compra
 app.put("/reject/:idSale", isUser, requestExists, rejectRequest);
@@ -185,7 +185,7 @@ app.post("/ranking_user/:idSale", isUser, requestExists, valuePurchase);
 
 // middleware de error
 app.use((error, req, res, next) => {
-  console.log(error)
+  console.log(error);
   res.status(error.httpStatus || 500).send({
     status: "error",
     message: error.message,

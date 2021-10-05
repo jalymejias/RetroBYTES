@@ -2,10 +2,7 @@
 import ProfileTabs from "../../components/profile";
 
 function Profile() {
-  return (
-    <><ProfileTabs /></>
-    );
-  }
-
+  return <ProfileTabs />;
+}
 
 export default Profile;

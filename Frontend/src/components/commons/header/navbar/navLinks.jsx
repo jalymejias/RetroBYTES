@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const NavLinksContainer = styled.div`
   height: 100%;
@@ -31,31 +31,27 @@ const LinkItem = styled.li`
   }
 `;
 
-
 export function NavLinks(props) {
   return (
     <NavLinksContainer>
       <LinksWrapper>
         <LinkItem>
-          <Link to="/ordenadores">Ordenadores</Link>
+          <Link to="/products/Informática">Ordenadores</Link>
         </LinkItem>
         <LinkItem>
-          <Link to="/telefonia">Telefonía</Link>
+          <Link to="/products/Telefonía">Telefonía</Link>
         </LinkItem>
         <LinkItem>
-          <Link to="/gaming">Gaming</Link>
+          <Link to="/products/Gaming">Gaming</Link>
         </LinkItem>
         <LinkItem>
-          <Link to="/video">Video</Link>
+          <Link to="/products/Video">Video</Link>
         </LinkItem>
         <LinkItem>
-          <Link to="/audio">Audio</Link>
+          <Link to="/products/Audio">Audio</Link>
         </LinkItem>
         <LinkItem>
-          <Link to="/musica">Música</Link>
-        </LinkItem>
-        <LinkItem>
-          <Link to="/memorabilia">Memorabilia</Link>
+          <Link to="/products/Memorabilia">Memorabilia</Link>
         </LinkItem>
       </LinksWrapper>
     </NavLinksContainer>

@@ -1,15 +1,14 @@
 import { Box } from "@mui/system";
 import Typography from "@material-ui/core/Typography";
-import { useUserTokenContext } from "../../../contexts/UserTokenContext"
-import useReservasRealizadas from "../../../hooks/useReservasRealizadas"
+import { useUserTokenContext } from "../../../contexts/UserTokenContext";
+import useReservasRealizadas from "../../../hooks/useReservasRealizadas";
+import ReservaRealizada from "../../reservaRealizada";
 
 function ReservasRealizadas() {
-  const [token] = useUserTokenContext()
-  const [reservas] = useReservasRealizadas(token)
-  console.log("reservas", reservas)
+  const [token] = useUserTokenContext();
+  const [reservas] = useReservasRealizadas(token);
+  console.log("reservas", reservas);
 
-
-  
   return (
     <>
       <Typography
@@ -31,6 +30,10 @@ function ReservasRealizadas() {
           "& > :not(style)": { m: 3, width: "80ch" },
         }}
       >
+        {reservas.length &&
+          reservas.map((reserva) => (
+            <ReservaRealizada key={reserva.idSale} reserva={reserva} />
+          ))}
       </Box>
     </>
   );

@@ -9,8 +9,10 @@ const userBuyerBookings = async (req, res, next) => {
     const [result] = await connection.query(
       `
       SELECT *
-      FROM sales 
-      WHERE userBuyer_id=? `,
+      FROM sales s
+      LEFT JOIN products p ON s.product_id = p.id
+      LEFT JOIN products_photos pp ON s.product_id = pp.product_id
+      WHERE s.userBuyer_id=? `,
       [req.userAuth.id]
     );
 

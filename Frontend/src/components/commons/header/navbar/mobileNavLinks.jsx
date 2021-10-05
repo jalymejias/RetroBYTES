@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Accessibility } from "./accessibility";
 import { MenuToggle } from "./menuToggle";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const NavLinksContainer = styled.div`
   height: 100%;
@@ -52,29 +52,26 @@ export function MobileNavLinks(props) {
       {isOpen && (
         <LinksWrapper>
           <LinkItem>
-          <Link to="/ordenadores">Ordenadores</Link>
-        </LinkItem>
-        <LinkItem>
-          <Link to="/telefonia">Telefonía</Link>
-        </LinkItem>
-        <LinkItem>
-          <Link to="/gaming">Gaming</Link>
-        </LinkItem>
-        <LinkItem>
-          <Link to="/video">Video</Link>
-        </LinkItem>
-        <LinkItem>
-          <Link to="/audio">Audio</Link>
-        </LinkItem>
-        <LinkItem>
-          <Link to="/musica">Música</Link>
-        </LinkItem>
-        <LinkItem>
-          <Link to="/memorabilia">Memorabilia</Link>
-        </LinkItem>
+            <Link to="/products/Informática">Ordenadores</Link>
+          </LinkItem>
+          <LinkItem>
+            <Link to="/products/Telefonía">Telefonía</Link>
+          </LinkItem>
+          <LinkItem>
+            <Link to="/products/Gaming">Gaming</Link>
+          </LinkItem>
+          <LinkItem>
+            <Link to="/products/Video">Video</Link>
+          </LinkItem>
+          <LinkItem>
+            <Link to="/products/Audio">Audio</Link>
+          </LinkItem>
+          <LinkItem>
+            <Link to="/products/Memorabilia">Memorabilia</Link>
+          </LinkItem>
           <Marginer />
           <Container>
-          <Accessibility />
+            <Accessibility />
           </Container>
         </LinksWrapper>
       )}

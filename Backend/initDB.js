@@ -8,10 +8,6 @@ const fs = require("fs");
 const axios = require("axios");
 const uuid = require("uuid");
 
-
-
-
-
 async function downloadImage(url, filepath) {
   const queryResponse = await axios({
     url,
@@ -202,6 +198,17 @@ async function main() {
       users + 1
     )}", "${date}","${faker.lorem.paragraph()}")
    
+    `);
+
+    await connection.query(`
+    INSERT INTO products_photos(uploadDate, photo, product_id)
+    VALUES 
+    ("${date}","ibm-pc-40.jpg", 1),
+    ("${date}","a9262483e5c2150b96d49ba397d5944d.jpg", 2),
+    ("${date}","jay-carter-sinclair-spectrum.jpg", 3),
+    ("${date}","Apple-IMAC-G3.jpg", 4),
+    ("${date}","6e474ed4-1e90-48c3-8778-be664bd3c3c9.jpg", 5),
+    ("${date}","MITS-ALTAIR-8800-9.jpg", 6)
     `);
 
     console.log("Datos randoms introducidos");
