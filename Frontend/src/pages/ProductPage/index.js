@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import useProduct from '../../hooks/useProduct';
 import styled from "styled-components";
 import background from "../../assets/images/backIcons.jpg";
+import { useUserTokenContext } from "../../contexts/UserTokenContext"
 
 // const Back = styled.div`
 //     backgroundImage: "url(${background})";
@@ -71,7 +72,27 @@ button:hover {
 const Product = () => {
   const {id}=useParams()
   const [product]= useProduct(id)
+  const [token] = useUserTokenContext()
+
   console.log({id,product})
+
+  const reservarProducto = async () => {
+    const res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/buy/${id}/proposal`,
+      {
+        method: "POST",
+        headers: { Authorization: token }
+      }
+    );
+
+    if (res.ok) {
+      alert("Reserva realizada correctamente")
+    } else {
+      const error = await res.json()
+      alert(error.message)
+    }
+  }
+
   return(
     <div style={{backgroundImage: `url(${background})`,
                   width:'100vw',
@@ -87,7 +108,7 @@ const Product = () => {
                 <h2>Precio: €{product.price}</h2>
                 <h2>Año de fabricación: {product.manufact_date}</h2>
                 <h4>{product.description}</h4>
-              <button className="cart">RESERVA</button>
+              <button className="cart" onClick={reservarProducto}>RESERVA</button>
 
             </div>
         </div>
