@@ -16,6 +16,7 @@ function ReservasRealizadas() {
           fontSize: "2rem",
           fontWeight: 600,
           textTransform: "uppercase",
+          marginBottom: "2rem"
         }}
       >
         Reservas realizadas
@@ -26,8 +27,8 @@ function ReservasRealizadas() {
         justifyContent="center"
         alignItems="center"
         minHeight="50vh"
-        maxHeight="70vh"
         minWidth="60vh"
+        // maxHeight="60vh" 
         sx={{
           "& > :not(style)": { m: 3, width: "80ch" },
           "&": { overflowY: "auto" },

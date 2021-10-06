@@ -21,7 +21,7 @@ const LinksWrapper = styled.ul`
   width: 100%;
   flex-direction: column;
   position: fixed;
-  top: 181px;
+  top: 160px;
   left: 0px;
 `;
 
@@ -36,7 +36,7 @@ const LinkItem = styled.li`
 `;
 
 const Marginer = styled.div`
-  height: 2em;
+  height: 10em;
 `;
 
 const Container = styled.div`

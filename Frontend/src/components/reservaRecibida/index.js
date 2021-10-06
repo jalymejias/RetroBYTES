@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useUserTokenContext } from "../../contexts/UserTokenContext";
+import { Divider} from "@material-ui/core";
+import Input from '@mui/material/Input'
+
 
 const ReservaRecibida = ({ reserva }) => {
   const [token] = useUserTokenContext();
@@ -48,41 +51,45 @@ const ReservaRecibida = ({ reserva }) => {
   };
 
   return (
-    <div className="reserva_realizada">
-      <Link to={`/product/${reserva.product_id}`}>
-        <img
-          style={{ width: 200, height: 200 }}
-          src={`${process.env.REACT_APP_BACKEND_URL}/${reserva.photo}`}
-          alt={reserva.name}
-        />
-      </Link>
-      <p>{reserva.name}</p>
-      {status === null && <p>Status: Pendiente</p>}
-      {status === 1 && <p>Status: Aprobada</p>}
-      {status === 0 && <p>Status: Rechazada</p>}
-      {status === null && !showDeliveryForm && (
-        <div>
-          <button onClick={() => setShowDeliveryForm(true)}>Aprobar</button>
-          <button onClick={rechazarReserva}>Rechazar</button>
-        </div>
-      )}
-      {showDeliveryForm && (
-        <form onSubmit={aprobarReserva}>
-          <input
-            value={deliveryPlace}
-            onChange={(e) => setDeliveryPlace(e.target.value)}
-            placeholder="Lugar de entrega"
-          />
-          <input
-            value={deliveryTime}
-            onChange={(e) => setDeliveryTime(e.target.value)}
-            placeholder="Fecha de entrega"
-          />
-          <button onClick={() => setShowDeliveryForm(false)}>Cancelar</button>
-          <button type="submit">Confirmar</button>
-        </form>
-      )}
-    </div>
+    <><Divider /><div className="wrapper">
+      <div className="reserva_realizada">
+        <Link to={`/product/${reserva.product_id}`}>
+          <img
+            style={{ width: 300, borderRadius: "20px" }}
+            src={`${process.env.REACT_APP_BACKEND_URL}/${reserva.photo}`}
+            alt={reserva.name} />
+        </Link>
+      </div>
+      <div>
+        <h1>{reserva.name}</h1>
+        {status === null && <h2>Status: Pendiente</h2>}
+        {status === 1 && <h2>Status: Aprobada</h2>}
+        {status === 0 && <h2>Status: Rechazada</h2>}
+
+        {status === null && !showDeliveryForm && (
+          <div>
+            <button onClick={() => setShowDeliveryForm(true)}>Aprobar</button>
+            <button onClick={rechazarReserva}>Rechazar</button>
+          </div>
+        )}
+        {showDeliveryForm && (
+          <form onSubmit={aprobarReserva}>
+            <Input sx={{ minWidth: 300, fontsize: 34}}                                                                                        
+              value={deliveryPlace}
+              onChange={(e) => setDeliveryPlace(e.target.value)}
+              placeholder="Lugar de entrega" />
+            <Input
+              value={deliveryTime}
+              onChange={(e) => setDeliveryTime(e.target.value)}
+              placeholder="Fecha de entrega"
+              type="datetime-local" />
+            <button onClick={() => setShowDeliveryForm(false)}>Cancelar</button>
+           
+            <button type="submit">Confirmar</button>
+          </form>
+        )}
+      </div>
+    </div></>
   );
 };
 
